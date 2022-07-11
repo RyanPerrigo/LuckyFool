@@ -17,6 +17,10 @@
 		4B5E03B0285FCC2500990531 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E0386285FCC2400990531 /* ContentView.swift */; };
 		4B5E03B1285FCC2500990531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5E0387285FCC2400990531 /* Assets.xcassets */; };
 		4B5E03B2285FCC2500990531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B5E0387285FCC2400990531 /* Assets.xcassets */; };
+		4B5E03C32860270200990531 /* RandomImageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E03C22860270200990531 /* RandomImageVM.swift */; };
+		4B5E03C62860B7E800990531 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E03C52860B7E800990531 /* WelcomeView.swift */; };
+		4B870E132860C3090096EB4A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E03C52860B7E800990531 /* WelcomeView.swift */; };
+		4B870E142860C30D0096EB4A /* RandomImageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E03C22860270200990531 /* RandomImageVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,8 @@
 		4B5E03A5285FCC2500990531 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B5E03A9285FCC2500990531 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		4B5E03AB285FCC2500990531 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		4B5E03C22860270200990531 /* RandomImageVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageVM.swift; sourceTree = "<group>"; };
+		4B5E03C52860B7E800990531 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 		4B5E0384285FCC2400990531 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				4B5E03C42860B7CD00990531 /* Screens */,
+				4B5E03C1286026F000990531 /* ViewModels */,
 				4B5E0385285FCC2400990531 /* LuckyFoolApp.swift */,
 				4B5E0386285FCC2400990531 /* ContentView.swift */,
 				4B5E0387285FCC2400990531 /* Assets.xcassets */,
@@ -139,6 +147,22 @@
 				4B5E03AB285FCC2500990531 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		4B5E03C1286026F000990531 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B5E03C22860270200990531 /* RandomImageVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4B5E03C42860B7CD00990531 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				4B5E03C52860B7E800990531 /* WelcomeView.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +324,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B5E03AF285FCC2500990531 /* ContentView.swift in Sources */,
+				4B5E03C32860270200990531 /* RandomImageVM.swift in Sources */,
 				4B5E03AD285FCC2500990531 /* LuckyFoolApp.swift in Sources */,
+				4B5E03C62860B7E800990531 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +335,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B5E03B0285FCC2500990531 /* ContentView.swift in Sources */,
+				4B870E142860C30D0096EB4A /* RandomImageVM.swift in Sources */,
+				4B870E132860C3090096EB4A /* WelcomeView.swift in Sources */,
 				4B5E03AE285FCC2500990531 /* LuckyFoolApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
