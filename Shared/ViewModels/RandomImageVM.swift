@@ -20,6 +20,7 @@ class RandomImageVM: ObservableObject {
     @Published var displayNumber: Int = 0
     @Published var playerOneChosenNumber: String
     @Published var playerTwoChosenNumber: String
+    @Published var computerGuess: Int?
     @Published var isWinner: Bool = false
     @Published var localCount: Int = 0
     
@@ -27,8 +28,8 @@ class RandomImageVM: ObservableObject {
     var winner: Winner = .none
     var playerOneScore: Int = 0
     var playerTwoScore: Int = 0
-    var roundFinished: Bool = false
-    var winningNumber: Int = -1
+ 
+    var winningNumber: Int = -10
     var numberRange: ClosedRange<Int>
     var count = 18
     var timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
@@ -41,43 +42,34 @@ class RandomImageVM: ObservableObject {
         self.numberRange = numberRange
         self.playerOneChosenNumber = ""
         self.playerTwoChosenNumber = ""
+        self.computerGuess = nil
     }
     
     func checkWinner() {
         let graceNumber = 1
+        computerGuess = numberRange.randomElement() ?? 8008135
         
         $playerOneChosenNumber.combineLatest($playerTwoChosenNumber)
             .sink { [unowned self] p1guess , p2guess in
                 let safeP1Guess = Int(p1guess) ?? -5
                 let safeP2Guess = Int(p2guess) ?? -5
-                let upperP1Range = safeP1Guess ... (safeP1Guess + graceNumber)
-                let lowerP1Range = (safeP1Guess - graceNumber) ... safeP1Guess
-                let upperP2Range = safeP2Guess ... (safeP2Guess + graceNumber)
-                let lowerP2Range = (safeP2Guess - graceNumber) ... safeP2Guess
+               
                 
-                if roundFinished {
-                    winningNumber = displayNumber
-
-                  
-                    if !upperP1Range.contains(winningNumber) || !lowerP1Range.contains(winningNumber) && !upperP2Range.contains(winningNumber) || !lowerP2Range.contains(winningNumber) {
-                        self.winner = .house
-                        isWinner = true
-                    }
-                    if upperP1Range.contains(winningNumber) || lowerP1Range.contains(winningNumber) && upperP2Range.contains(winningNumber) || lowerP2Range.contains(winningNumber) {
-                        self.winner = .both
-                        isWinner = true
-                        
-                    }
-                    if upperP1Range.contains(winningNumber) || lowerP1Range.contains(winningNumber) {
-                        self.winner = .playerOne
-                        isWinner = true
-                       
-                    }
-                    if upperP2Range.contains(winningNumber) || lowerP2Range.contains(winningNumber) {
-                        self.winner = .playerTwo
-                        isWinner = true
-                    }
+                if abs(safeP1Guess - winningNumber ) <= graceNumber && abs(safeP2Guess - winningNumber ) <= graceNumber {
+                    self.winner = .both
+                    isWinner = true
+                } else if abs(safeP1Guess - winningNumber ) <= graceNumber {
+                    self.winner = .playerOne
+                    isWinner = true
+                } else if abs(safeP2Guess - winningNumber ) <= graceNumber {
+                    self.winner = .playerTwo
+                    isWinner = true
+                } else if computerGuess == winningNumber {
+                    self.winner = .house
+                    isWinner = true
                 }
+               
+
             }
             .store(in: &cancelables)
     }
@@ -86,7 +78,7 @@ class RandomImageVM: ObservableObject {
         pickRandomNumber()
         
         if localCount == 0 {
-            roundFinished = true
+            winningNumber = displayNumber
             checkWinner()
             cancelables.removeAll()
         }
@@ -110,7 +102,7 @@ class RandomImageVM: ObservableObject {
         if winner == .house {
             return "You couldn't beat the house! Don't worry, you'll get 'em next time!"
         } else {
-            return "Congrats \(winner.rawValue)!! you won!"
+            return " The winning number was \(winningNumber)\n Congrats \(winner.rawValue)!! you won!"
         }
     }
 }

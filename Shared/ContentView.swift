@@ -161,8 +161,11 @@ struct RandomImageScreen: View {
                 .shadow(color: .black, radius: 25, x: 0, y: 15)
                 .padding()
             HStack {
-                Text("Guess:")
-                Text("0")
+                if let computerGuess = viewModel.computerGuess {
+                    Text("Guess:")
+                    Text("\(computerGuess)")
+                }
+                
             }
         }
     }
